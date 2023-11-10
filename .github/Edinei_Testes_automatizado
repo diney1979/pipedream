@@ -1,0 +1,98 @@
+O desafio consiste em automatizar os seguintes cenários:
+
+Criação de uma conta e cadastro de usuário
+Seleção de um produto em um dos seguintes menus: Mulheres, Vestidos, Camisetas ou Blog
+Adicionar um produto no carrinho
+Visualizar o produto da compra
+Realizar o login
+Confirmar o endereço de entrega
+Proceder com o envio
+Efetuar o pagamento
+Para resolver este desafio, vamos utilizar as seguintes tecnologias:
+
+Linguagem de programação: Java
+Biblioteca de automação de testes: Selenium WebDriver
+Formato de especificação de testes: Gherkin
+Ambiente de teste: Google Chrome
+Arquitetura do projeto
+
+O projeto será dividido em duas camadas:
+
+Camada de testes: Responsável por executar os testes automatizados.
+Camada de negócios: Responsável por realizar as operações de negócios necessárias para executar os testes.
+Implementação dos cenários
+
+Cenário 1: Criação de uma conta e cadastro de usuário
+
+Gherkin
+Feature: Criação de uma conta e cadastro de usuário
+
+  Scenario: Criação de uma conta e cadastro de usuário
+    Given que o usuário está na página inicial
+    When o usuário clica no botão "Cadastre-se"
+    Then o usuário deve ser direcionado para a página de cadastro
+    And o usuário deve preencher os campos de cadastro com as seguintes informações:
+      | Nome | João da Silva |
+      | E-mail | joao@silva.com |
+      | Senha | 123456 |
+    And o usuário deve clicar no botão "Criar conta"
+    Then o usuário deve ser direcionado para a página de login
+Use o código com cuidado. Saiba mais
+Java
+public class CriarContaCenarioTest {
+
+    @Test
+    public void deveCriarContaECadastrarUsuario() {
+        // Abrir o navegador
+        driver.get("https://www.example.com/");
+
+        // Clicar no botão "Cadastre-se"
+        driver.findElement(By.id("btn-cadastre-se")).click();
+
+        // Verificar se o usuário foi direcionado para a página de cadastro
+        Assert.assertEquals("Cadastro", driver.getTitle());
+
+        // Preencher os campos de cadastro
+        driver.findElement(By.id("nome")).sendKeys("João da Silva");
+        driver.findElement(By.id("email")).sendKeys("joao@silva.com");
+        driver.findElement(By.id("senha")).sendKeys("123456");
+
+        // Clicar no botão "Criar conta"
+        driver.findElement(By.id("btn-criar-conta")).click();
+
+        // Verificar se o usuário foi direcionado para a página de login
+        Assert.assertEquals("Login", driver.getTitle());
+    }
+}
+Use o código com cuidado. Saiba mais
+Cenário 2: Seleção de um produto
+
+Gherkin
+Feature: Seleção de um produto
+
+  Scenario: Seleção de um produto
+    Given que o usuário está na página inicial
+    When o usuário clica no menu "Mulheres"
+    Then o usuário deve ser direcionado para a página de produtos da categoria "Mulheres"
+    And o usuário deve clicar no produto "Vestido preto"
+    Then o produto "Vestido preto" deve ser adicionado ao carrinho
+Use o código com cuidado. Saiba mais
+Java
+public class SelecionarProdutoCenarioTest {
+
+    @Test
+    public void deveSelecionarProduto() {
+        // Abrir o navegador
+        driver.get("https://www.example.com/");
+
+        // Clicar no menu "Mulheres"
+        driver.findElement(By.id("nav-mulheres")).click();
+
+        // Verificar se o usuário foi direcionado para a página de produtos da categoria "Mulheres"
+        Assert.assertEquals("Mulheres", driver.findElement(By.id("h1-categoria")).getText());
+
+        // Clicar no produto "Vestido preto"
+        driver.findElement(By.id("produto-vestido-preto")).click();
+
+        // Verificar se o produto "Vestido preto" foi adicionado ao carrinho
+        Assert.assertEquals("Vest
